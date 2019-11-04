@@ -1,0 +1,40 @@
+spring:
+  boot:
+    admin:
+      client:        url:  http://10.137.72.220:9090/
+  application:
+    name: wms-api
+  servlet:
+    multipart:
+      max-file-size:  2MB
+      max-request-size: 10MB  
+      
+server:
+  port: 0
+  servlet:
+    context-path: /
+    
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:  ${EUREKA_URI:http://10.137.72.220:8761/eureka}
+  instance:
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+    metadata-map:
+      startup: ${random.int}    #needed to trigger info and endpoint update after 
+
+management:
+  server:
+    port: 9000
+  endpoints:
+    web:
+      exposure:
+        include: "*"  
+  endpoint:
+    health:
+      show-details: ALWAYS
+open.tcs.order.list.url:  http://10.137.72.220:55200/v1/transportOrders
+open.tcs.order.upload.url:  http://10.137.72.220:55200/v1/transportOrder
+

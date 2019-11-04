@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link th:href="@{/css/style.css}" rel="stylesheet"/>
+        <script type="text/javascript" th:src="@{/js/jquery-3.4.1.js}" src="/js/jquery-3.4.1.js"></script>
+          <script type="text/javascript" th:src="@{/js/orders.js}" src="/js/orders.js"></script>
+          <script type="text/javascript" th:src="@{/js/fileupload.js}" src="/js/fileupload.js"></script>
+    </head>
+<body>
+    <div style="border-bottom: 3px solid #fff; margin-bottom: 15px;">
+        <ul class="header">
+        <li style="width: 100px;"> <img th:src="@{/img/hyster-yale.png}" alt="Hyster Yale"/></li>
+        <li><h1>Traffic Manager System</h1></li>
+        </ul> 
+    </div>
+
+    <div class="maindiv">
+        <table >
+            <tr>
+                <td>WMS is Running on</td>
+                <td></td>
+                <td>ACMTCSWMST</td>
+            </tr>
+            <tr>
+                <td>OpenTCS is Running on</td>
+                <td></td>
+                <td>ACMTCSWEBT1</td>
+            </tr>
+            <tr>
+                <td> Upload excel file to create order: </td>
+                <td>
+                <form method="POST" action="/api/upload" enctype="multipart/form-data" id="fileUploadForm">
+ 	  		      <input  id="file" type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" /><br/><br/>
+  	 			     <input type="submit" value="Submit"  id="btnSubmit"/>
+			    </form>
+            </tr>
+        </table>
+    </div>
+    <div class="content" id='uploadedOrders' style="display: none;"></div>	 
+<div class="content">
+        <table>
+            <tr>
+                <td><button class="btn" onclick="FirstDiv();" id="listAllOrder">List all orders</button></td>
+                <td><button class="btn" onclick="SecondDiv();" id="listVehicleAssignment">Vehicle Assignment</button></td>
+         </tr>
+        </table>
+    </div>
+<div id="listofallorder" style="display: none;"></div>
+<div id="orderswithproceedvehicle" style="display: none;"></div>
+<script>
+    function FirstDiv(){
+        document.getElementById("listofallorder").style.display = 'block';
+        document.getElementById("orderswithproceedvehicle").style.display = 'none';
+    } 
+    function SecondDiv() {
+       document.getElementById("orderswithproceedvehicle").style.display = 'block';
+       document.getElementById("listofallorder").style.display = 'none';
+    }
+</script>
+</body>
+</html>
+
