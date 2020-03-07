@@ -1,0 +1,32 @@
+# Use root/root as user/password credentials
+version: '3.1'
+
+services:
+  web:
+     image: rnd/user-mysql
+     container_name: web
+     #restart: always
+     ports:
+       - 8787:8787
+     expose:
+      - "8787"  
+     depends_on: 
+      - db # This service depends on mysql. Start that first.
+  db:
+    image: mysql
+    container_name: db
+    #command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: rnd
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3306:3306"
+  adminer:
+    container_name: adminer
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+      

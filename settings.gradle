@@ -3,4 +3,4 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
-rootProject.name = 'wms-api'
+rootProject.name = 'springboot-mysql-docker'
